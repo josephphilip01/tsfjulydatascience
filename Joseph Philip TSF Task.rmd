@@ -1,0 +1,253 @@
+---
+output:
+  html_document: default
+  word_document: default
+  pdf_document: default
+---
+
+### **The Sparks Foundation: Graduate Rotational Internship Program July 2021**
+#### Domain: Data Science & Business Analytics   
+
+#### _Name: Joseph Philip_ 
+
+##### Project Topic: Stock Market Prediction using Numerical and Textual Analysis
+##### Project Level: Advanced
+##### Project Aim: Create a hybrid model for stock price/performance prediction using numerical analysis of historical stock prices, and sentimental analysis of news headlines
+  
+  
+#### Programming Language: R  
+
+
+##### **Installing packages**
+```{r}
+
+# install.packages("quantmod")
+# install.packages("wordcloud")
+# install.packages("RColorBrewer")
+# install.packages("tm")
+# install.packages('Rcpp')
+library(Rcpp)
+library(quantmod)
+
+```
+
+
+##### **Technical analysis Indicators**
+
+###### **Moving average convergence divergence (MACD)** is a trend-following momentum indicator that shows the relationship between two moving averages of a security's price. The MACD is calculated by subtracting the 26-period exponential moving average (EMA) from the 12-period EMA.
+###### The result of that calculation is the MACD line. A nine-day EMA of the MACD called the "signal line," is then plotted on top of the MACD line, which can function as a trigger for buy and sell signals. Traders may buy the security when the MACD crosses above its signal line and sell-or short-the security when the MACD crosses below the signal line. Moving average convergence divergence (MACD) indicators can be interpreted in several ways, but the more common methods are crossovers, divergences, and rapid rises/falls.
+
+
+###### **Bollinger Band** is a technical analysis tool defined by a set of trendlines plotted two standard deviations (positively and negatively) away from a simple moving average (SMA) of a security's price.Many traders believe the closer the prices move to the upper band, the more overbought the market, and the closer the prices move to the lower band, the more oversold the market.
+###### Because standard deviation is a measure of volatility, when the markets become more volatile the bands widen; during less volatile periods, the bands contract.
+
+###### **The Commodity Channel Index (CCI)** is a momentum-based oscillator used to help determine when an investment vehicle is reaching a condition of being overbought or oversold. This technical indicator assesses price trend direction and strength, allowing traders to determine if they want to enter or exit a trade, refrain from taking a trade, or add to an existing position. In this way, the indicator can be used to provide trade signals when it acts in a certain way. The CCI is an unbounded oscillator, meaning it can go higher or lower indefinitely. For this reason, overbought and oversold levels are typically determined for each individual asset by looking at historical extreme CCI levels where the price reversed from.
+
+###### **The Directional Movement Index (DMI)** is an indicator developed by J. Welles Wilder in 1978 that identifies in which direction the price of an asset is moving. The indicator does this by comparing prior highs and lows and drawing two lines: a positive directional movement line (+DI) and a negative directional movement line (-DI). An optional third line, called the average directional index (ADX), can also be used to gauge the strength of the uptrend or downtrend. When +DI is above -DI, there is more upward pressure than downward pressure in the price. Conversely, if -DI is above +DI, then there is more downward pressure on the price. This indicator may help traders assess the trend direction. Crossovers between the lines are also sometimes used as trade signals to buy or sell.
+
+###### **Chaikin Money Flow** oscillator and money flow index are both momentum indicators, but the similarities end there because the ways the indicators are calculated and interpreted are different. When the Chaikin money flow indicator is red, it suggests the market is in a downtrend and when it is green, the indicator suggests an uptrend. Chaikin Money Flow (CMF) developed by Marc Chaikin is a volume-weighted average of accumulation and distribution over a specified period. The standard CMF period is 21 days. The principle behind the Chaikin Money Flow is the nearer the closing price is 
+
+
+##### **Stock Analysis**
+
+###### **1)TCS** 
+###### Tata Consultancy Services (TCS) is an Indian multinational information technology (IT) services and consulting companyTCS is the largest IT services company in the world by market capitalisation ($169.2 billion). It is a subsidiary of the Tata Group and operates in 149 locations across 46 countries.
+```{r}
+
+getSymbols("TCS.NS", src="yahoo")
+chartSeries(TCS.NS) 
+addMACD() # adds moving average convergence divergence signals
+addBBands() # Adds Bollinger bands to the stock
+addCCI() # Add Commodity channel index. 
+addADX() #Add Directional Movement Indicator 
+addCMF() #Add Money Flow chart
+
+```
+
+
+
+###### **2)UltraTech Cement Limited**
+###### UltraTech Cement Limited is an Indian cement company based in Mumbai. It is a subsidiary of the Indian multinational conglomerate, Aditya Birla Group.[4] Ultratech is the largest manufacturer of grey cement, ready mix concrete (RMC) and white cement in India with an installed capacity of 116.75 million tonnes per annum.
+```{r}
+getSymbols("ULTRACEMCO.NS", src="yahoo")
+chartSeries(ULTRACEMCO.NS) 
+addMACD() # adds moving average convergence divergence signals
+addBBands() # Adds Bollinger bands to the stock
+addCCI() # Add Commodity channel index. 
+addADX() #Add Directional Movement Indicator 
+addCMF() #Add Money Flow chart
+
+```
+
+
+###### **3)ICICI Bank Limited**
+###### ICICI Bank Limited is an Indian financial services company with its registered office in Vadodara, Gujarat, and corporate office in Mumbai, Maharashtra. It offers a wide range of banking products and financial services for corporate and retail customers through a variety of delivery channels and specialized subsidiaries in the areas of investment banking, life, non-life insurance, venture capital and asset management. The bank has a network of 5,275 branches and 15,589 ATMs across India and has a presence in 17 countries.
+```{r}
+getSymbols("ICICIBANK.NS", src="yahoo")
+chartSeries(ICICIBANK.NS) 
+addMACD() # adds moving average convergence divergence signals
+addBBands() # Adds Bollinger bands to the stock
+addCCI() # Add Commodity channel index. 
+addADX() #Add Directional Movement Indicator 
+addCMF() #Add Money Flow chart
+
+```
+
+
+###### **4)Bajaj Finance**
+###### Bajaj Finance Limited,a subsidiary of Bajaj Finserv, is an Indian non-banking financial company (NBFC). The company deals in consumer finance, SME (small and medium-sized enterprises) and commercial lending, and wealth management.
+```{r}
+getSymbols("BAJFINANCE.NS", src="yahoo")
+chartSeries(BAJFINANCE.NS) 
+addMACD() # adds moving average convergence divergence signals
+addBBands() # Adds Bollinger bands to the stock
+addCCI() # Add Commodity channel index. 
+addADX() #Add Directional Movement Indicator 
+addCMF() #Add Money Flow chart
+
+```
+
+
+###### **5)Reliance Industries Limited**
+###### Reliance Industries Limited (RIL) is an Indian multinational conglomerate, headquartered in Mumbai. RIL's diverse businesses include energy, petrochemicals, natural gas, retail, telecommunications, mass media, and textiles. Reliance is one of the most profitable companies in India,[3] the largest publicly traded company in India by market capitalisation,[4] and the largest company in India as measured by revenue. 
+
+```{r}
+getSymbols("RELIANCE.NS", src="yahoo")
+chartSeries(RELIANCE.NS) 
+addMACD() # adds moving average convergence divergence signals
+addBBands() # Adds Bollinger bands to the stock
+addCCI() # Add Commodity channel index. 
+addADX() #Add Directional Movement Indicator 
+addCMF() #Add Money Flow chart
+
+```
+
+
+###### **SENSEX**
+###### SENSEX Is a free-float market-weighted stock market index of 30 well-established and financially sound companies listed on the Bombay Stock Exchange. The 30 constituent companies which are some of the largest and most actively traded stocks, are representative of various industrial sectors of the Indian economy.
+
+```{r}
+getSymbols("^BSESN", src="yahoo") 
+chartSeries(BSESN)
+
+addMACD() # adds moving average convergence divergence signals 
+addBBands() # Adds Bollinger bands to the stock price. 
+addCCI() # Add Commodity channel index. 
+addADX() #Add Directional Movement Indicator 
+addCMF() #Add Money Flow chart
+
+```
+
+##### **Sentiment analysis**
+
+###### Sentiment analysis is the computational task of automatically determining what feelings a writer is expressing in text. Sentiment is often framed as a binary distinction (positive vs. negative), but it can also be a more fine-grained, like identifying the specific emotion an author is expressing (like fear, joy or anger).
+
+###### Sentiment analysis is not perfect, and as with any automatic analysis of language, you will have errors in your results. It also cannot tell you why a writer is feeling a certain way. However, it can be useful to quickly summarize some qualities of text, especially if you have so much text that a human reader cannot analyze all of it.
+
+```{r}
+
+library(syuzhet)
+library(lubridate)
+library(ggplot2)
+library(scales)
+library(reshape2)
+library(dplyr)
+
+```
+```{r}
+
+# Read file
+senti <- read.csv(file.choose(), header = T)
+tweets=iconv(senti$headline_text)
+
+# Obtain sentiment scores
+sa <- get_nrc_sentiment(tweets,language="english")
+head(sa)
+tweets[4]
+
+# Bar plot
+barplot(colSums(sa),
+        las = 2,
+        col = rainbow(10),
+        ylab = 'Count',
+        main = 'Sentiment Scores')
+
+
+```
+
+##### **Text analysis**
+
+###### Text Analysis aims to extract machine-readable information from unstructured text in order to enable data-driven approaches towards managing content. 
+
+```{r}
+
+df=read.csv(file.choose())
+head(df)
+str(df)
+View(df)
+```
+
+
+###### Build corpus
+
+###### A corpus (corpora pl.) is just a format for storing textual data that is used throughout linguistics and text analysis. It usually contains each document or set of text, along with some meta attributes that help describe that document.
+
+```{r}
+
+library(tm)
+Corpus=iconv(df$headline_text)
+Corpus=Corpus(VectorSource(Corpus))
+inspect(Corpus[1:5])
+
+#cleaning the text
+
+Corpus=tm_map(Corpus,tolower)
+inspect(Corpus[1:5])
+
+Corpus=tm_map(Corpus,removeNumbers)
+Corpus=tm_map(Corpus,removePunctuation)
+inspect(Corpus[1:15])
+
+stopwords('english')
+clean.set=tm_map(Corpus,removeWords,stopwords("english"))
+inspect(Corpus[1:15])
+
+clean.set=tm_map(Corpus,stripWhitespace)
+inspect(Corpus[1:15])
+```
+
+
+###### Document Term matrix
+
+###### A document-term matrix is a simple way to compare all the terms or words across each document. If you view the data simply as a matrix; each row represent a unique document and each column will represent a unique term.
+```{r}
+
+tdm=TermDocumentMatrix(clean.set)
+
+tdm=as.matrix(tdm)
+tdm[1:10,1:20]
+
+w=rowSums(tdm)
+
+w=subset(w,w>10)
+barplot(w,las=2,col =colors()[1:100])
+
+```
+
+###### Wordcloud
+
+###### Word Cloud is a data visualization technique used for representing text data in which the size of each word indicates its frequency or importance. Significant textual data points can be highlighted using a word cloud. 
+
+```{r}
+
+library(wordcloud)
+library(RColorBrewer)
+w=sort(rowSums(tdm),decreasing = T)
+set.seed(222)
+wordcloud(words = names(w),
+          freq = w,
+          max.words = 300,random.order = F,
+          min.freq = 5,colors=brewer.pal(8, "Dark2"))
+
+```
+

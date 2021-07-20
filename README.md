@@ -31,6 +31,6 @@
 
 ## Files in this repository:
 ### 1. README file - Information about the project
-### 2. irisdataset.csv - CSV file containing the dataset
-### 3. Anna Miriam Philip - Final.rmd - rmd file containing the code
-### 4. PDF File containing the code and output
+### 2. Book1.csv - CSV file containing the dataset of headlines
+### 3. Joseph Philip TSF Task.rmd - rmd file containing the code
+
